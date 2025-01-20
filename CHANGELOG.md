@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.1.2 - 2025-01-20
+#### Bug Fixes
+- cleaned up error logging on commit check scripts - (78c0c3e) - Nicholas McMillen
+#### Continuous Integration
+- added conventional commit check script - (00993b4) - Nicholas McMillen
+
+- - -
+
 ## 0.1.1 - 2025-01-20
 #### Bug Fixes
 - updating for scripts - (46bb3fa) - Nicholas McMillen
