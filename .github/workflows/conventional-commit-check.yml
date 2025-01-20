@@ -22,6 +22,17 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      # install cargo
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      # install convco
+      - name: Install convco
+        run: cargo install convco
+
       # check for conventional commits  
       - name: Check for conventional commits
         run: scripts/ops/conv-commit-check.sh
