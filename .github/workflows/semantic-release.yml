@@ -8,10 +8,10 @@ on:
         description: "Run semantic-release in dry-run mode"
         type: choice
         options:
-          - "true"
-          - "false"
+          - true
+          - false
         required: false
-        default: "true"
+        default: 'true'
 
 jobs:
   semantic-release:
