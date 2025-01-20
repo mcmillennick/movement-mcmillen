@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [0.1.3](https://github.com/movementlabsxyz/movement/compare/eca6ef15342ef95b4f5f5779e33ec7c81de33347..0.1.3) - 2025-01-20
+#### Continuous Integration
+- added tag push - ([eca6ef1](https://github.com/movementlabsxyz/movement/commit/eca6ef15342ef95b4f5f5779e33ec7c81de33347)) - Nicholas McMillen
+
+- - -
+
 ## [0.1.2](https://github.com/movementlabsxyz/movement/compare/4fb36cbb55e0084e99423215b67b43e1eb6611e4..0.1.2) - 2025-01-20
 #### Miscellaneous Chores
 - changelog clean up - ([4fb36cb](https://github.com/movementlabsxyz/movement/commit/4fb36cbb55e0084e99423215b67b43e1eb6611e4)) - Nicholas McMillen
