@@ -4,6 +4,16 @@ run-name: ${{ (github.event.inputs.dry_run == 'true') && 'Semantic Release [DRY 
 on:
   workflow_dispatch:
     inputs:
+      bump_type:
+        description: "The type of bump to perform"
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+        required: false
+        default: auto
       dry_run:
         description: "Run semantic-release in dry-run mode"
         type: choice
