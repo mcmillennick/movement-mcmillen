@@ -1,39 +1,38 @@
-name: Semantic Release
-run-name: ${{ (github.event.inputs.dry_run == 'true') && 'Semantic Release [DRY RUN]' || 'Semantic Release' }}
+name: Cargo Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      dry_run:
-        description: "Run semantic-release in dry-run mode"
-        type: choice
-        options:
-          - true
-          - false
-        required: false
-        default: 'true'
+  workflow_dispatch: # Allows manual/matrix triggering
 
 jobs:
-  semantic-release:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        # or actions-rs/setup@v2, or skip if your environment already includes Rust
 
-      - name: Install Dependencies
-        run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/commit-analyzer @semantic-release/release-notes-generator semantic-release-cargo
-
-      - name: Run semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Some packages also want GH_TOKEN or other environment variables
+      - name: Install cargo-release and git-cliff
         run: |
-          npx semantic-release --dry-run=${{ github.event.inputs.dry_run == 'true' && 'true' || 'false' }}
-        # Explanation:
-        #  - We pass --dry-run if the user triggers the manual workflow with input dry_run = true
-        #  - This avoids actually publishing or pushing tags 
+          cargo install cargo-release
+          cargo install git-cliff
+
+      - name: Bump version with cargo-release
+        env:
+          # If you publish to crates.io, set your CARGO_REGISTRY_TOKEN here
+          CARGO_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: |
+          # You can specify `patch`, `minor`, or `major`; tweak your flags as needed:
+          cargo release patch --tag-prefix v --no-publish
+
+      - name: Generate changelog with git-cliff
+        run: |
+          git cliff --output CHANGELOG.md
+          git add CHANGELOG.md
+          git commit -m "chore: update CHANGELOG" || echo "No changes to commit"
+          git push origin HEAD
+
+      # Existing code...
+      # (any additional steps like building images, etc.) 

@@ -1,0 +1,21 @@
+name: Build Containers
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+    secrets:
+      github-token:
+        required: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # then do the rest of your build matrix steps
+      # referencing the "version" input for tagging
+      # and referencing secrets.github-token for pushing 

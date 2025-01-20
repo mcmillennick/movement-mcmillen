@@ -1,0 +1,11 @@
+{
+  "branches": ["main"],
+  "ci": true,
+  "plugins": [
+    "@semantic-release/changelog",
+    "@semantic-release/git",
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    
+  ]
+}
