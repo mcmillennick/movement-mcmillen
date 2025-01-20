@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [0.1.2](https://github.com/movementlabsxyz/movement/compare/4fb36cbb55e0084e99423215b67b43e1eb6611e4..0.1.2) - 2025-01-20
+#### Miscellaneous Chores
+- changelog clean up - ([4fb36cb](https://github.com/movementlabsxyz/movement/commit/4fb36cbb55e0084e99423215b67b43e1eb6611e4)) - Nicholas McMillen
+
+- - -
+
 ## [0.1.1](https://github.com/movementlabsxyz/movement/compare/1ea5113337e062c965b85590897dc3dfdfbb4dc7..0.1.1) - 2025-01-20
 #### Miscellaneous Chores
 - cog configing again - ([582ddac](https://github.com/movementlabsxyz/movement/commit/582ddac533dcf603b946d45b1dabdc21292f493b)) - Nicholas McMillen
