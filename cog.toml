@@ -7,7 +7,6 @@ generate_mono_repository_package_tags = false
 branch_whitelist = [
     "main",
 ]
-exclude
 skip_ci = "[skip ci]"
 skip_untracked = true
 pre_bump_hooks = [
