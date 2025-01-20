@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# check if git is installed
+if ! command -v git &> /dev/null; then
+    echo "git is not installed"
+    exit 1
+fi
+
+# check if convco is installed
+if ! command -v convco &> /dev/null; then
+    echo "convco is not installed"
+    exit 1
+fi
+
+# check if cog is installed
+if ! command -v cog &> /dev/null; then
+    echo "cocogitto (cog) is not installed"
+    exit 1
+fi
+
 echo "Creating semantic release"
 
 # get current commit hash
@@ -33,5 +51,9 @@ echo "No failures found in conventional commits"
 # bump version
 echo "Bumping version"
 cog bump --auto
+
+# output the new version
+NEW_VERSION=$(convco version --bump)
+echo "New version: $NEW_VERSION"
 
 exit 0

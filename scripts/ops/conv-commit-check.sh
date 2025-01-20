@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# check if git is installed
+if ! command -v git &> /dev/null; then
+    echo "git is not installed"
+    exit 1
+fi
+
+# check if convco is installed
+if ! command -v convco &> /dev/null; then
+    echo "convco is not installed"
+    exit 1
+fi
+
 echo "Checking for conventional commits"
 
 # get current commit hash

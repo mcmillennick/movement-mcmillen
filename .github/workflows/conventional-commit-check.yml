@@ -1,0 +1,21 @@
+name: Conventional Commit Check
+run-name: Checking ${{ github.sha }} for conventional commits
+
+on:
+  pull_request:
+    types:
+    - labeled
+    - opened
+    - synchronize
+  push:
+    branches:
+      - '!main' 
+
+
+jobs:
+  conventional-commit-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for conventional commits
+        run: |
+          ./scripts/ops/conv-commit-check.sh
