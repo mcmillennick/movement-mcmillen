@@ -1,4 +1,4 @@
-name: Conventional Commit Check
+name: Commit Checks
 run-name: Checking ${{ github.ref_name }} for conventional commits
 
 on:
@@ -16,6 +16,7 @@ on:
 jobs:
   conventional-commit-check:
     runs-on: ubuntu-latest
+    name: Conventional Commit Check
     steps:
         
       # check out repository
