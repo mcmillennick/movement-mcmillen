@@ -17,14 +17,14 @@ if [ "$COMMIT_HASH_CURRENT" == "$COMMIT_HASH_LAST_TAG" ]; then
     exit 0
 fi
 
-echo "Checking for conventional commits"
-
 # generate changelog
 CONVENTIONAL_COMMITS=$(convco check $COMMIT_HASH_LAST_TAG..$COMMIT_HASH_CURRENT)
 
-echo "Conventional commits: $CONVENTIONAL_COMMITS"
-
-if [ -z "$CONVENTIONAL_COMMITS" ]; then
-    echo "No conventional commits found"
+if echo "$CONVENTIONAL_COMMITS" | grep -qi "fail"; then
+    echo "Failures found in conventional commits"
     exit 1
 fi
+
+echo "No failures found in conventional commits"
+exit 0
+
