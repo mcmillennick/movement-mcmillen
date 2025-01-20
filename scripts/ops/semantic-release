@@ -23,12 +23,6 @@ if ! command -v git &> /dev/null; then
     exit 1
 fi
 
-# check if convco is installed
-if ! command -v convco &> /dev/null; then
-    echo "convco is not installed"
-    exit 1
-fi
-
 # check if cog is installed
 if ! command -v cog &> /dev/null; then
     echo "cocogitto (cog) is not installed"
