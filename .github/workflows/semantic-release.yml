@@ -1,25 +1,20 @@
-name: Cargo Release
+name: Semantic Release
+run-name: ${{ (github.event.inputs.dry_run == 'true') && 'Semantic Release [DRY RUN]' || 'Semantic Release' }}
 
 on:
-  workflow_dispatch: # Allows manual/matrix triggering
+  workflow_dispatch:
     inputs:
-      bump_type:
+      dry_run:
+        description: "Run semantic-release in dry-run mode"
         type: choice
         options:
-          - auto
-          - patch
-          - minor
-          - major
-        default: auto
-        description: The type of bump to perform
-      dry_run:
-        type: boolean
-        default: true
-        description: Whether to perform a dry run
-
+          - true
+          - false
+        required: false
+        default: 'true'
 
 jobs:
-  release:
+  semantic-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,7 +37,6 @@ jobs:
           git config --global user.name "Infrastructure[bot]"
           git config --global user.email "infrastructure@movementlabs.xyz"
 
-          
       - name: Bump Version
         run: |
           ./scripts/ops/semantic-release ${{ inputs.bump_type }} ${{ inputs.dry_run }}
