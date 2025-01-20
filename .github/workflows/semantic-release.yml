@@ -6,8 +6,12 @@ on:
     inputs:
       dry_run:
         description: "Run semantic-release in dry-run mode"
+        type: choice
+        options:
+          - "true"
+          - "false"
         required: false
-        default: "false"
+        default: "true"
 
 jobs:
   semantic-release:
