@@ -10,29 +10,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-        # or actions-rs/setup@v2, or skip if your environment already includes Rust
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
 
-      - name: Install cargo-release and git-cliff
+      - name: Install Cocogitto
+        run: cargo install cocogitto --locked
+
+      - name: Configure Git
         run: |
-          cargo install cargo-release
-          cargo install git-cliff
+          git config --global user.name "Infrastructure[bot]"
+          git config --global user.email "infrastructure@movementlabs.xyz"
 
-      - name: Bump version with cargo-release
-        env:
-          # If you publish to crates.io, set your CARGO_REGISTRY_TOKEN here
-          CARGO_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-        run: |
-          # You can specify `patch`, `minor`, or `major`; tweak your flags as needed:
-          cargo release patch --tag-prefix v --no-publish
-
-      - name: Generate changelog with git-cliff
-        run: |
-          git cliff --output CHANGELOG.md
-          git add CHANGELOG.md
-          git commit -m "chore: update CHANGELOG" || echo "No changes to commit"
-          git push origin HEAD
-
-      # Existing code...
-      # (any additional steps like building images, etc.) 
+      # - name: Bump Version
+      #   run: |
+      #     cog bump --auto
+      #     # git push --follow-tags
