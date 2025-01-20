@@ -1,0 +1,37 @@
+name: Semantic Release
+run-name: ${{ (github.event.inputs.dry_run == 'true') && 'Semantic Release [DRY RUN]' || 'Semantic Release' }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run semantic-release in dry-run mode"
+        required: false
+        default: "false"
+
+jobs:
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github \
+               @semantic-release/commit-analyzer @semantic-release/release-notes-generator \
+               semantic-release-cargo
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Some packages also want GH_TOKEN or other environment variables
+        run: |
+          npx semantic-release --dry-run=${{ github.event.inputs.dry_run == 'true' && 'true' || 'false' }}
+        # Explanation:
+        #  - We pass --dry-run if the user triggers the manual workflow with input dry_run = true
+        #  - This avoids actually publishing or pushing tags 
