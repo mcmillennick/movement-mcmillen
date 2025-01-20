@@ -1,5 +1,5 @@
 name: Commit Checks
-run-name: Checking ${{ github.ref_name }} for conventional commits
+run-name: Checking commit ${{ github.sha }}
 
 on:
   pull_request:
