@@ -24,6 +24,7 @@ jobs:
           git config --global user.name "Infrastructure[bot]"
           git config --global user.email "infrastructure@movementlabs.xyz"
 
+          
       # - name: Bump Version
       #   run: |
       #     cog bump --auto
