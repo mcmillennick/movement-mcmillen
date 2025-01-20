@@ -1,0 +1,44 @@
+name: Cargo Release
+
+on:
+  workflow_dispatch: # Allows manual/matrix triggering
+    inputs:
+      bump_type:
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+        default: auto
+        description: The type of bump to perform
+
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install Cocogitto
+        run: |
+          cargo install cocogitto --locked
+          cargo install convco
+          cargo install cargo-edit
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Infrastructure[bot]"
+          git config --global user.email "infrastructure@movementlabs.xyz"
+
+          
+      - name: Bump Version
+        run: |
+          ./scripts/ops/semantic-release ${{ inputs.bump_type }}
