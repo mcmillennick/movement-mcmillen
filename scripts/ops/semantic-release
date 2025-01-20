@@ -75,8 +75,8 @@ echo "No failures found in conventional commits"
 echo "Bumping version"
 cog bump --$BUMP_TYPE $DRY_RUN
 
-# # output the new version
-# NEW_VERSION=$(convco version --bump)
-# echo "New version: $NEW_VERSION"
+# output the new version
+NEW_VERSION=$(convco version --bump)
+echo "New version: $NEW_VERSION"
 
-# exit 0
+exit 0
