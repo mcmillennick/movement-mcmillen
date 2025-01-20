@@ -17,7 +17,7 @@ echo "Checking for conventional commits"
 # get current commit hash
 COMMIT_HASH_CURRENT=$(git rev-parse HEAD)
 
-# generate changelog
+# check for conventional commits
 CONVENTIONAL_COMMITS=$(cog check)
 
 if echo "$CONVENTIONAL_COMMITS" | grep -qi "Error:"; then
