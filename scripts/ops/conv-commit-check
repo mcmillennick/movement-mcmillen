@@ -18,13 +18,12 @@ echo "Checking for conventional commits"
 COMMIT_HASH_CURRENT=$(git rev-parse HEAD)
 
 # generate changelog
-CONVENTIONAL_COMMITS=$(convco check --merges --ignore-reverts -n 1)
+CONVENTIONAL_COMMITS=$(cog check)
 
-if echo "$CONVENTIONAL_COMMITS" | grep -qi "fail"; then
+if echo "$CONVENTIONAL_COMMITS" | grep -qi "Error:"; then
     echo "Failures found in conventional commit"
     exit 1
 fi
 
-echo "No failures found in conventional commits"
 exit 0
 

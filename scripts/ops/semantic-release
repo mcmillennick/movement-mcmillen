@@ -58,15 +58,13 @@ if [ "$COMMIT_HASH_CURRENT" == "$COMMIT_HASH_LAST_TAG" ]; then
     exit 1
 fi
 
-# generate changelog
-CONVENTIONAL_COMMITS=$(convco check --merges --ignore-reverts $COMMIT_HASH_LAST_TAG..$COMMIT_HASH_CURRENT)
+# check for conventional commits
+CONVENTIONAL_COMMITS=$(cog check)
 
-if echo "$CONVENTIONAL_COMMITS" | grep -qi "fail"; then
-    echo "Failures found in conventional commits"
+if echo "$CONVENTIONAL_COMMITS" | grep -qi "Error:"; then
+    echo "Failures found in conventional commit"
     exit 1
 fi
-
-echo "No failures found in conventional commits"
 
 # bump version
 echo "Bumping version"
