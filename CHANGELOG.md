@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file. See [conven
 - - -
 ## 0.1.1 - 2025-01-20
 #### Bug Fixes
+- updating for scripts - (46bb3fa) - Nicholas McMillen
+- updating for - (c9e4e8d) - Nicholas McMillen
+- testing - (f411e3c) - Nicholas McMillen
+
+- - -
+
+## 0.1.1 - 2025-01-20
+#### Bug Fixes
 - workflow fix - (f01a8b5) - Nicholas McMillen
 #### Miscellaneous Chores
 - stashing changes - (239d178) - Nicholas McMillen
