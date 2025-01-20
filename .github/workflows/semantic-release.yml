@@ -27,7 +27,7 @@ jobs:
           git config --global user.email "infrastructure@movementlabs.xyz"
 
           
-      # - name: Bump Version
-      #   run: |
-      #     cog bump --auto
-      #     # git push --follow-tags
+      - name: Bump Version
+        run: |
+          cog bump --auto
+          # git push --follow-tags
