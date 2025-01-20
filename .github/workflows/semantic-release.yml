@@ -49,6 +49,10 @@ jobs:
           git config --global user.name "Infrastructure[bot]"
           git config --global user.email "infrastructure@movementlabs.xyz"
 
+      - name: Pull tags
+        run: |
+          git fetch --tags
+
       - name: Bump Version
         run: |
           ./scripts/ops/semantic-release ${{ inputs.bump_type }} ${{ inputs.dry_run }}
