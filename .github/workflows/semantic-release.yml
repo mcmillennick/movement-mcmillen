@@ -12,6 +12,10 @@ on:
           - major
         default: auto
         description: The type of bump to perform
+      dry_run:
+        type: boolean
+        default: true
+        description: Whether to perform a dry run
 
 
 jobs:
