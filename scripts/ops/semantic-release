@@ -59,7 +59,7 @@ if [ "$COMMIT_HASH_CURRENT" == "$COMMIT_HASH_LAST_TAG" ]; then
 fi
 
 # generate changelog
-CONVENTIONAL_COMMITS=$(convco check $COMMIT_HASH_LAST_TAG..$COMMIT_HASH_CURRENT)
+CONVENTIONAL_COMMITS=$(convco check --merges --ignore-reverts $COMMIT_HASH_LAST_TAG..$COMMIT_HASH_CURRENT)
 
 if echo "$CONVENTIONAL_COMMITS" | grep -qi "fail"; then
     echo "Failures found in conventional commits"
