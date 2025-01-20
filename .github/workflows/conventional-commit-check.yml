@@ -32,7 +32,7 @@ jobs:
 
       # install convco
       - name: Install convco
-        run: cargo install convco
+        run: cargo install cocogitto --locked
 
       # check for conventional commits  
       - name: Check for conventional commits

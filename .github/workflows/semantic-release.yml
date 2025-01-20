@@ -29,8 +29,7 @@ jobs:
       - name: Install Cocogitto
         run: |
           cargo install cocogitto --locked
-          cargo install convco
-          cargo install cargo-edit
+          cargo install cargo-edit --locked
 
       - name: Configure Git
         run: |
