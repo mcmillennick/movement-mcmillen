@@ -20,20 +20,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
         with:
-          node-version: '18'
+          toolchain: stable
+          override: true
 
-      - name: Install Dependencies
-        run: npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/commit-analyzer @semantic-release/release-notes-generator semantic-release-cargo
-
-      - name: Run semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Some packages also want GH_TOKEN or other environment variables
+      - name: Install Cocogitto
         run: |
-          npx semantic-release --dry-run=${{ github.event.inputs.dry_run == 'true' && 'true' || 'false' }}
-        # Explanation:
-        #  - We pass --dry-run if the user triggers the manual workflow with input dry_run = true
-        #  - This avoids actually publishing or pushing tags 
+          cargo install cocogitto --locked
+          cargo install cargo-edit --locked
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Infrastructure[bot]"
+          git config --global user.email "infrastructure@movementlabs.xyz"
+
+      - name: Bump Version
+        run: |
+          ./scripts/ops/semantic-release ${{ inputs.bump_type }} ${{ inputs.dry_run }}
