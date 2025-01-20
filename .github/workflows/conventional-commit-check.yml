@@ -18,5 +18,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check for conventional commits
-        run: |
-          ./scripts/ops/conv-commit-check.sh
+        run: scripts/ops/conv-commit-check.sh
