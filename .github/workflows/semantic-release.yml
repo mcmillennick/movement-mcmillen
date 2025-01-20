@@ -24,11 +24,14 @@ on:
         default: 'true'
 
 jobs:
-  semantic-release:
+  create-release:
     runs-on: ubuntu-latest
+    name: Create Release
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
 
       - name: Set up Rust
         uses: actions-rs/toolchain@v1
