@@ -35,4 +35,4 @@ jobs:
 
       # check for conventional commits  
       - name: Check for conventional commits
-        run: scripts/ops/conv-commit-check.sh
+        run: scripts/ops/conv-commit-check
