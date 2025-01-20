@@ -9,6 +9,7 @@ skip_ci = "[skip ci]"
 skip_untracked = false
 pre_bump_hooks = [
     "echo {{version}}",
+    "cargo set-version {{version}} --workspace"
 ]
 post_bump_hooks = []
 pre_package_bump_hooks = []
@@ -25,3 +26,4 @@ authors = []
 [bump_profiles]
 
 [packages]
+
