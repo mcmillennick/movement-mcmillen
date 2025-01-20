@@ -6,7 +6,7 @@ generate_mono_repository_global_tag = true
 generate_mono_repository_package_tags = true
 branch_whitelist = []
 skip_ci = "[skip ci]"
-skip_untracked = false
+skip_untracked = true
 pre_bump_hooks = [
     "echo {{version}}",
     "cargo set-version {{version}} --workspace"
