@@ -62,7 +62,7 @@ fi
 
 # bump version
 echo "Bumping version"
-cog bump --$BUMP_TYPE $DRY_RUN
+cog bump --$BUMP_TYPE $DRY_RUN --exclude movement-faucet-service
 
 # output the new version
 NEW_VERSION=$(cog get-version)
