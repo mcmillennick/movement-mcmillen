@@ -7,6 +7,7 @@ generate_mono_repository_package_tags = false
 branch_whitelist = [
     "main",
 ]
+exclude
 skip_ci = "[skip ci]"
 skip_untracked = true
 pre_bump_hooks = [
@@ -23,7 +24,10 @@ post_package_bump_hooks = []
 
 [changelog]
 path = "CHANGELOG.md"
-authors = []
+template = "remote"
+remote = "github.com"
+repository = "movement"
+owner = "movementlabsxyz"
 
 [bump_profiles]
 
