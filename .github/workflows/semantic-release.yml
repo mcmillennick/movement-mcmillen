@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: main
 
       - name: Set up Rust
         uses: actions-rs/toolchain@v1
