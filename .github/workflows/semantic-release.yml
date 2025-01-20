@@ -17,7 +17,9 @@ jobs:
           override: true
 
       - name: Install Cocogitto
-        run: cargo install cocogitto --locked
+        run: |
+          cargo install cocogitto --locked
+          cargo install cargo-edit
 
       - name: Configure Git
         run: |

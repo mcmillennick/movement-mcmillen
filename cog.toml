@@ -9,7 +9,7 @@ skip_ci = "[skip ci]"
 skip_untracked = true
 pre_bump_hooks = [
     "echo {{version}}",
-    "cargo set-version {{version}} --workspace"
+    "cargo set-version {{version}} --exclude movement-faucet-service"
 ]
 post_bump_hooks = []
 pre_package_bump_hooks = []
