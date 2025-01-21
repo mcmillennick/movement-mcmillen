@@ -1,5 +1,5 @@
-name: Semantic Release
-run-name: ${{ (github.event.inputs.dry_run == 'true') && 'Semantic Release [DRY RUN]' || 'Semantic Release' }}
+name: 🏷️ Tag Semantic Version
+run-name: ${{ (github.event.inputs.dry_run == 'true') && '🏷️ Tagging new semantic version [DRY RUN]' || '🏷️ Tagging new semantic version' }}
 
 on:
   workflow_dispatch:
@@ -24,9 +24,9 @@ on:
         default: 'true'
 
 jobs:
-  create-release:
+  tag-semantic-version:
     runs-on: ubuntu-latest
-    name: Create Release
+    name: New Semantic Version
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,7 +55,7 @@ jobs:
 
       - name: Bump Version
         run: |
-          ./scripts/ops/semantic-release ${{ inputs.bump_type }} ${{ inputs.dry_run }}
+          ./scripts/devops/tag-semantic-release ${{ inputs.bump_type }} ${{ inputs.dry_run }}
       
       - name: Push commit and tags
         run: |
